@@ -274,7 +274,7 @@
 
             // Click the next button
             const nextButton = document.querySelector('button[data-e2e="arrow-right"]');
-            if (nextButton) {
+            if (nextButton && !nextButton.disabled) {
                 nextButton.click();
                 await delay(2000); // Wait 2 seconds for the next video to load
             } else {
