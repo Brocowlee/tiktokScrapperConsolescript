@@ -206,7 +206,7 @@
     }
 
     // Main function to get video metadata
-    async function getVideoMetadata() {
+    async function getVideoMetadata(date_limit) {
         let videoData = [];
 
         while (true) {
@@ -234,6 +234,11 @@
 
             // Convert the date to YYYY-MM-DD format
             const formattedDate = convertToDate(dateText);
+
+            if(date_limit && formattedDate < date_limit) {
+                console.log("Reached date limit. Stopping script and downloading JSON...");
+                break;
+            }
 
             // Get the current page URL
             const videoUrl = window.location.href;
@@ -292,5 +297,6 @@
     }
 
     // Run the function
+    // data_limit can be set to a specific date in YYYY-MM-DD format to stop scraping at that date
     await getVideoMetadata();
 })();
